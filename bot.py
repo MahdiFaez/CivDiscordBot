@@ -1,10 +1,14 @@
 import discord
 from discord.ext import commands
+import json
+import os
 
 intents = discord.Intents.default()
 intents.message_content = True
+intents.members = True
 
 bot = commands.Bot(command_prefix='!', intents=intents)
+DATA_FILE = "ranking.json"
 
 # Event Bot rdy
 @bot.event
@@ -18,19 +22,6 @@ async def ping(ctx):
 
 bot.run('MTM4ODgzNzIzMzQzMTE1NDY5OA.Gcdx08.jCRNf11sshCjj51Cvk1NGEBfR-6862OR8h9qLs')
 
-import discord
-from discord.ext import commands
-import json
-import os
-
-intents = discord.Intents.default()
-intents.message_content = True
-intents.members = True
-
-bot = commands.Bot(command_prefix='!', intents=intents)
-
-DATA_FILE = "ranking.json"
-
 def load_data():
     if not os.path.exists(DATA_FILE):
         return {}
@@ -40,8 +31,6 @@ def load_data():
 def save_data(data):
     with open(DATA_FILE, "w") as f:
         json.dump(data, f, indent=4)
-
-data = load_data()
 
 def add_win(user_id):
     if user_id not in data:
@@ -88,6 +77,8 @@ async def ranking(ctx):
         user = await bot.fetch_user(int(user_id))
         msg += f"{i}. {user.name} – {stats['points']} Punkte / {stats['wins']} Siege\n"
 
+
+data = load_data()
 <<<<<<< HEAD
     await ctx.send(msg)
 =======

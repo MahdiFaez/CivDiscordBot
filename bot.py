@@ -10,17 +10,7 @@ intents.members = True
 bot = commands.Bot(command_prefix='!', intents=intents)
 DATA_FILE = "ranking.json"
 
-# Event Bot rdy
-@bot.event
-async def on_ready():
-    print(f'Bot ist online als {bot.user}')
 
-# Test von Phil
-@bot.command()
-async def ping(ctx):
-    await ctx.send('Pong!')
-
-bot.run('MTM4ODgzNzIzMzQzMTE1NDY5OA.Gcdx08.jCRNf11sshCjj51Cvk1NGEBfR-6862OR8h9qLs')
 
 def load_data():
     if not os.path.exists(DATA_FILE):
@@ -47,9 +37,16 @@ def add_placement(user_ids):
         data[user_id]["points"] += points
     save_data(data)
 
+
+# Event Bot rdy
 @bot.event
 async def on_ready():
-    print(f"{bot.user} ist da")
+    print(f'Bot ist online als {bot.user}')
+
+# Test von Phil
+@bot.command()
+async def ping(ctx):
+    await ctx.send('Pong!')
 
 @bot.command()
 async def win(ctx, member: discord.Member):
@@ -78,6 +75,8 @@ async def ranking(ctx):
         msg += f"{i}. {user.name} – {stats['points']} Punkte / {stats['wins']} Siege\n"
 
 
+
+bot.run('MTM4ODgzNzIzMzQzMTE1NDY5OA.Gcdx08.jCRNf11sshCjj51Cvk1NGEBfR-6862OR8h9qLs')
 data = load_data()
 # await ctx.send(msg)
 #mahdis änderung

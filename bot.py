@@ -80,3 +80,4 @@ async def ranking(ctx):
 
 data = load_data()
 # await ctx.send(msg)
+#mahdis änderung

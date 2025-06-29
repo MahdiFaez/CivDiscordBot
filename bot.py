@@ -80,4 +80,4 @@ async def ranking(ctx):
 
 data = load_data()
 # await ctx.send(msg)
-#phils änderung
+#phils änderung#mahdis änderung

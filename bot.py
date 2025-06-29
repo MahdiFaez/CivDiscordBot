@@ -88,4 +88,8 @@ async def ranking(ctx):
         user = await bot.fetch_user(int(user_id))
         msg += f"{i}. {user.name} – {stats['points']} Punkte / {stats['wins']} Siege\n"
 
+<<<<<<< HEAD
     await ctx.send(msg)
+=======
+    await ctx.send(msg)
+>>>>>>> 7a7b31587c3a8bbcdec0952db52d0f863c5aaedf

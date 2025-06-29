@@ -26,11 +26,14 @@ def save_data(data):
     with open(DATA_FILE, "w") as f:
         json.dump(data, f, indent=4)
 
-def add_win(user_id):
+def add_win(user_id, rank, number_players):
     if user_id not in data:
         data[user_id] = {"wins": 0, "points": 0}
-    data[user_id]["wins"] += 1
+    if rank == 0:
+        data[user_id]["wins"] += 1
+    data[user_id]["points"] += number_players-rank
     save_data(data)
+    return data[user_id]["wins"], data[user_id]["points"]
 
 def add_placement(user_ids):
     total_players = len(user_ids)
@@ -55,10 +58,11 @@ async def ping(ctx):
 @bot.command("win", help="win a Civ Session")
 @commands.has_role("CIV-ADMIN")
 async def win(ctx, *ranking : discord.Member):
-    for player in ranking:
-        print(player.name, player.id)
-    add_win(str(player.name))
-    await ctx.send(f"{player.name} Du biste der Beste!!! 🏆")
+    for rank, player in enumerate(ranking):
+        print(player.display_name, player.id)
+        wins, points = add_win(str(player.name), rank, len(ranking))
+        # await ctx.send(f"{player.name} Du biste der Beste!!! 🏆")
+        await ctx.send(f"{player.display_name} Du bist {rank+1} geworden. Du hast jetzt {wins} Siege und {points} Punkte!")
 
 # @bot.command
 # async def punkte(ctx, *members: discord.Member):

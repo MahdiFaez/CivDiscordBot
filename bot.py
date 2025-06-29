@@ -79,8 +79,4 @@ async def ranking(ctx):
 
 
 data = load_data()
-<<<<<<< HEAD
     await ctx.send(msg)
-=======
-    await ctx.send(msg)
->>>>>>> 7a7b31587c3a8bbcdec0952db52d0f863c5aaedf

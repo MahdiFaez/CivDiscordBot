@@ -79,4 +79,4 @@ async def ranking(ctx):
 bot.run('MTM4ODgzNzIzMzQzMTE1NDY5OA.Gcdx08.jCRNf11sshCjj51Cvk1NGEBfR-6862OR8h9qLs')
 data = load_data()
 # await ctx.send(msg)
-#mahdis änderung
+#phils änderung#mahdis änderung

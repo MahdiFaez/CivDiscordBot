@@ -1,5 +1,4 @@
-# TODO: Formel Rank: Pionts = ((players+1)-place)^2
-
+# TODO: Formel Rank: Pionts = ((players+1)-place)*5
 import discord
 from dotenv import load_dotenv
 from discord.ext import commands

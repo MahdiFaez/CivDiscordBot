@@ -8,8 +8,9 @@ intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
 
-bot = commands.Bot(command_prefix='!', intents=intents)
+bot = commands.Bot(command_prefix='§', intents=intents)
 
+load_dotenv()
 TOKEN = os.getenv("TOKEN")
 DATA_FILE = os.getenv("save_file")
 
@@ -45,14 +46,17 @@ async def on_ready():
     print(f'Bot ist online als {bot.user}')
 
 # Test von Phil
-@bot.command
+@bot.command("ping", help="PING-PONG")
 async def ping(ctx):
     await ctx.send('Pong!')
 
-# @bot.command
-# async def win(ctx, member: discord.Member):
-#     add_win(str(member.id))
-#     await ctx.send(f"{member.display_name} Du biste der Beste!!! 🏆")
+@bot.command("win", help="win a Civ Session")
+@commands.has_role("CIV-ADMIN")
+async def win(ctx, *ranking : discord.Member):
+    for player in ranking:
+        print(player.name, player.id)
+    add_win(str(player.name))
+    await ctx.send(f"{player.name} Du biste der Beste!!! 🏆")
 
 # @bot.command
 # async def punkte(ctx, *members: discord.Member):
@@ -76,8 +80,6 @@ async def ping(ctx):
 #         msg += f"{i}. {user.name} – {stats['points']} Punkte / {stats['wins']} Siege\n"
 
 
-
-bot.run(TOKEN)
+print("Token:", TOKEN)
 data = load_data()
-# await ctx.send(msg)
-#phils änderung#mahdis änderung
+bot.run(TOKEN)

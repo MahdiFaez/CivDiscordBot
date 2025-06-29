@@ -16,7 +16,7 @@ def initialize_bot():
     intents.message_content = True
     intents.members = True
 
-    bot = commands.Bot(command_prefix='/', intents=intents)
+    bot = commands.Bot(command_prefix='§', intents=intents)
     
     # Event Bot rdy
     @bot.event

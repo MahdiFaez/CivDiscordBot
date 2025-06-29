@@ -1,4 +1,5 @@
 import discord
+from dotenv import load_dotenv
 from discord.ext import commands
 import json
 import os
@@ -8,9 +9,9 @@ intents.message_content = True
 intents.members = True
 
 bot = commands.Bot(command_prefix='!', intents=intents)
-DATA_FILE = "ranking.json"
 
-
+TOKEN = os.getenv("TOKEN")
+DATA_FILE = os.getenv("save_file")
 
 def load_data():
     if not os.path.exists(DATA_FILE):
@@ -44,39 +45,39 @@ async def on_ready():
     print(f'Bot ist online als {bot.user}')
 
 # Test von Phil
-@bot.command()
+@bot.command
 async def ping(ctx):
     await ctx.send('Pong!')
 
-@bot.command()
-async def win(ctx, member: discord.Member):
-    add_win(str(member.id))
-    await ctx.send(f"{member.display_name} Du biste der Beste!!! 🏆")
+# @bot.command
+# async def win(ctx, member: discord.Member):
+#     add_win(str(member.id))
+#     await ctx.send(f"{member.display_name} Du biste der Beste!!! 🏆")
 
-@bot.command()
-async def punkte(ctx, *members: discord.Member):
-    if not members:
-        await ctx.send("Bitte gib die Platzierungen an du Dummkopf, z. B.: `!punkte @spieler1 @spieler2`")
-        return
-    add_placement([str(m.id) for m in members])
-    await ctx.send("Punkte wurden vergeben! ✅")
+# @bot.command
+# async def punkte(ctx, *members: discord.Member):
+#     if not members:
+#         await ctx.send("Bitte gib die Platzierungen an du Dummkopf, z. B.: `!punkte @spieler1 @spieler2`")
+#         return
+#     add_placement([str(m.id) for m in members])
+#     await ctx.send("Punkte wurden vergeben! ✅")
 
-@bot.command()
-async def ranking(ctx):
-    if not data:
-        await ctx.send("Noo Diddy")
-        return
+# @bot.command
+# async def ranking(ctx):
+#     if not data:
+#         await ctx.send("Noo Diddy")
+#         return
 
-    sorted_data = sorted(data.items(), key=lambda x: x[1]["points"], reverse=True)
+#     sorted_data = sorted(data.items(), key=lambda x: x[1]["points"], reverse=True)
 
-    msg = "**🏆 Ranking:**\n"
-    for i, (user_id, stats) in enumerate(sorted_data[:10], 1):
-        user = await bot.fetch_user(int(user_id))
-        msg += f"{i}. {user.name} – {stats['points']} Punkte / {stats['wins']} Siege\n"
+#     msg = "**🏆 Ranking:**\n"
+#     for i, (user_id, stats) in enumerate(sorted_data[:10], 1):
+#         user = await bot.fetch_user(int(user_id))
+#         msg += f"{i}. {user.name} – {stats['points']} Punkte / {stats['wins']} Siege\n"
 
 
 
-bot.run('MTM4ODgzNzIzMzQzMTE1NDY5OA.Gcdx08.jCRNf11sshCjj51Cvk1NGEBfR-6862OR8h9qLs')
+bot.run(TOKEN)
 data = load_data()
 # await ctx.send(msg)
 #phils änderung#mahdis änderung

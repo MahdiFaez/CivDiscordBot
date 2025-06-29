@@ -15,7 +15,7 @@ DATA_FILE = "ranking.json"
 async def on_ready():
     print(f'Bot ist online als {bot.user}')
 
-# Test
+# Test von Phil
 @bot.command()
 async def ping(ctx):
     await ctx.send('Pong!')

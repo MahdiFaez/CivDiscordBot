@@ -61,7 +61,7 @@ async def win(ctx, *ranking : discord.Member):
         print(player.display_name, player.id)
         wins, points = add_win(str(player.name), rank, len(ranking))
         # await ctx.send(f"{player.name} Du biste der Beste!!! 🏆")
-        await ctx.send(f"{player.display_name} Du bist {rank+1} geworden. Du hast jetzt {wins} Siege und {points} Punkte!")
+        await ctx.send(f"{player.display_name} Du bist {rank+1}. Platz geworden. Du hast jetzt {wins} Siege und {points} Punkte!")
 
 # @bot.command
 # async def punkte(ctx, *members: discord.Member):

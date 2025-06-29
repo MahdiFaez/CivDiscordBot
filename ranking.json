@@ -1,10 +1,12 @@
 {
-    "_maf.": {
-        "wins": 3,
-        "points": 6
-    },
     "_phil99": {
-        "wins": 5,
-        "points": 11
+        "wins": 3,
+        "games": 3,
+        "elo": 1044
+    },
+    "_maf.": {
+        "wins": 0,
+        "games": 3,
+        "elo": 10000
     }
 }
